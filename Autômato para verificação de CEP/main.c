@@ -9,6 +9,8 @@ struct linhas {
 
 struct tabela {
     unsigned int n;
+    unsigned int inicio;
+    unsigned int final;
     struct linhas **transicao;
 };
 
@@ -79,41 +81,44 @@ int buscarTransicao(struct tabela *tabela, int estadoAtual, char valor) {
     return -1;
 }
 
-int match(char *string, int s, int f, struct tabela *t) {
+int match(char *string, struct tabela *t) {
     int i = 0;
-    int estadoAtual = s;
+    int estadoAtual = t->inicio;
 
-    while (i < f) {
+    while (string[i] != '\0') {
         char simbolo = string[i];
         int proximoEstado = buscarTransicao(t, estadoAtual, simbolo);
 
         if (proximoEstado == -1) {
-            return estadoAtual;
+            return 0;
+
         }
 
         estadoAtual = proximoEstado;
         i++;
     }
 
-    return estadoAtual;
+    return 1;
 }
 
 int main(void) {
     struct tabela tabela;
     tabela.n = 10;
+    tabela.inicio = 0;
+    tabela.final = 9;
     preencherTabela(&tabela);
 
     char string[100];
 
     fgets(string, 100, stdin);
 
-    int estado = match(string, 0, 10, &tabela);
+    int estado = match(string, &tabela);
 
-    if (estado == 9) {
-        printf("O estado terminou em: %d, é uma string válida \n", estado);
+    if (estado) {
+        printf("É uma string válida! \n");
     }
     else {
-        printf("O estado terminou em: %d, não é uma string válida \n", estado);
+        printf("Não é uma string válida! \n");
     }
     
     //exibirTabela(&tabela);
