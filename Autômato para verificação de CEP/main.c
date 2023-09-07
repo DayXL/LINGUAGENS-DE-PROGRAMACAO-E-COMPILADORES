@@ -89,39 +89,36 @@ int match(char *string, struct tabela *t) {
         char simbolo = string[i];
         int proximoEstado = buscarTransicao(t, estadoAtual, simbolo);
 
+        estadoAtual = proximoEstado;
+
         if (proximoEstado == -1) {
-            return 0;
+            return estadoAtual;
 
         }
 
-        estadoAtual = proximoEstado;
         i++;
     }
-
-    return 1;
+ 
+    return estadoAtual;
 }
 
-int main(void) {
+int main(int argc, char** argv) {
     struct tabela tabela;
     tabela.n = 10;
     tabela.inicio = 0;
     tabela.final = 9;
     preencherTabela(&tabela);
 
-    char string[100];
+    int estado = match(argv[1], &tabela);
 
-    fgets(string, 100, stdin);
-
-    int estado = match(string, &tabela);
-
-    if (estado) {
+    if (estado == tabela.final) {
         printf("É uma string válida! \n");
     }
     else {
         printf("Não é uma string válida! \n");
     }
     
-    //exibirTabela(&tabela);
+    //cleexibirTabela(&tabela);
     
     return 0;
 }
