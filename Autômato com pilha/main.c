@@ -282,6 +282,7 @@ int match(char *string, struct tabela *t) {
     int estadoAtual = t->inicio;
     Memoria memoria;
     memoria.tam = 0;
+    memoria.lista = NULL;
 
     while (string[i] != '\0') {
         char simbolo = string[i];
@@ -331,16 +332,16 @@ int main(int argc, char** argv) {
     tabela.final = 1;
     preencherTabela(&tabela);
 
-    // int estado = match(argv[1], &tabela);
+    int estado = match(argv[1], &tabela);
 
-    // if (estado == tabela.final) {
-    //     printf("É uma string válida! \n");
-    // }
-    // else {
-    //     printf("Não é uma string válida! \n");
-    // }
+    if (estado == tabela.final) {
+        printf("É uma string válida! \n");
+    }
+    else {
+        printf("Não é uma string válida! \n");
+    }
     
-    exibirTabela(&tabela);
+    //exibirTabela(&tabela);
     
     return 0;
 }
