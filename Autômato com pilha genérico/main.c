@@ -322,12 +322,7 @@ int main(int argc, char** argv) {
 
     int estado = match(argv[1], &tabela);
 
-    if (estado == tabela.final[0] || tabela.final[1]) {
-        printf("É uma string válida! \n");
-    }
-    else {
-        printf("Não é uma string válida! \n");
-    }
+    (estado == tabela.final[0] || estado == tabela.final[1]) ? printf("É uma string válida! \n") : printf("Não é uma string válida! \n");
     
     //exibirTabela(&tabela);
     
