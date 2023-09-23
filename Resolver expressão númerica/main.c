@@ -84,7 +84,6 @@ void exibirOperacoes(struct operacoes *op) {
     }
 }
 
-
 void preencherTabela(struct tabela *tabela) {
     tabela->transicao = malloc(tabela->n * sizeof(struct linhas *));
 
@@ -185,8 +184,65 @@ int divisao(int a, int b) {
     return a / b;
 }
 
+int resolver(struct operacoes *op) {
+    int resul = 0;
+
+    for (int i = 0; i < op->n; i++) {
+        struct posicoes *pos = op->posicoes[i];
+        while (pos != NULL) {
+            struct valores *val = op->valores;
+            int achou = 0;
+
+            while ((val != NULL) && (!achou)) {
+                if (val->proximo != NULL) {
+                    if (val->posDepois == pos->pos) {
+                        achou = 1;
+
+                        if (i == 0) {
+                            val->valor = multiplicacao(val->valor, val->proximo->valor);
+                            val->posDepois = val->proximo->posDepois;
+                            val->proximo = val->proximo->proximo;
+
+                        }
+
+                        else if (i == 1) {
+                            val->valor = divisao(val->valor, val->proximo->valor);
+                            val->posDepois = val->proximo->posDepois;
+                            val->proximo = val->proximo->proximo;
+                        }
+
+                        else if (i == 2) {
+                            val->valor = soma(val->valor, val->proximo->valor);
+                            val->posDepois = val->proximo->posDepois;
+                            val->proximo = val->proximo->proximo;
+                        }
+
+                        else {
+                            val->valor = subtracao(val->valor, val->proximo->valor);
+                            val->posDepois = val->proximo->posDepois;
+                            val->proximo = val->proximo->proximo;
+                        }
+                    }
+                }
+
+                val = val->proximo;
+            }
+
+            pos = pos->proximo;
+
+        }
+
+        
+    }
+
+    resul = op->valores->valor;
+    
+    printf("Resultado: %d\n", resul);
+    return resul;
+}
+
 int match(char *string, struct tabela *t) {
-    int estadoAtual = t->inicio, resul = 0, i = 0, mudouUmaVez = 0, locPri = 0, locSeg = 0;
+    int estadoAtual = t->inicio, i = 0, mudouUmaVez = 0, locPri = 0, locSeg = 0;
     struct operacoes *op = malloc(sizeof(struct operacoes));
     op->n = 4; // primeira posição é multiplicação, segunda é divisão, depois adição e subtração
     op->posicoes = malloc(op->n * sizeof(struct posicoes));
@@ -275,7 +331,7 @@ int match(char *string, struct tabela *t) {
 
 
     if (!mudouUmaVez) {
-        resul = atoi(string);
+        printf("%s\n", string);
     }
 
     else {
@@ -292,11 +348,9 @@ int match(char *string, struct tabela *t) {
             }
             temp->proximo = val;
         }
+
+        resolver(op);
     }
-
-    //printf("%d\n", resul);
-
-    exibirOperacoes(op);
 
     return estadoAtual;
 }
@@ -312,6 +366,8 @@ int main(int argc, char** argv) {
 
     if (estado == tabela.final) {
         printf("É uma string válida! \n");
+
+
     }
     else {
         printf("Não é uma string válida! \n");
