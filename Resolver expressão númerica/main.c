@@ -329,12 +329,12 @@ int match(char *string, struct tabela *t) {
         i++;
     }
 
-
     if (!mudouUmaVez) {
-        printf("%s\n", string);
+        printf("Resultado: %s\n", string);
     }
 
     else {
+
         struct valores *val = criarVal(locSeg, aux, strlen(string));
 
         if (op->valores == NULL) {
@@ -347,6 +347,10 @@ int match(char *string, struct tabela *t) {
                 temp = temp->proximo;
             }
             temp->proximo = val;
+        }
+
+        if (string[0] == '-') {
+            op->valores->valor = -op->valores->valor;
         }
 
         resolver(op);
