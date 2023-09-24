@@ -24,24 +24,26 @@ typedef struct memoria {
 
 int removeFila(Memoria* memoria, char simbolo) {
 
-    if ((memoria->lista[(memoria->tam) - 1])[0] == simbolo) {
-        Memoria nova;
-        nova.tam = memoria->tam - 1;
-        nova.lista = malloc(sizeof(char*) * nova.tam);
+    if (memoria->tam != 0) {
+        if ((memoria->lista[(memoria->tam) - 1])[0] == simbolo) {
+            Memoria nova;
+            nova.tam = memoria->tam - 1;
+            nova.lista = malloc(sizeof(char*) * nova.tam);
 
-        for (int i = 0; i < nova.tam; i++) {
-            nova.lista[i] = memoria->lista[i + 1];
+            for (int i = 0; i < nova.tam; i++) {
+                nova.lista[i] = memoria->lista[i + 1];
 
-        }
+            }
 
-        free(memoria->lista);
+            free(memoria->lista);
+        
+            (*memoria) = nova;
+
+            return 1;
+
+        } 
+    }
     
-        (*memoria) = nova;
-
-        return 1;
-
-    } 
-
     return -1;
 
 }
