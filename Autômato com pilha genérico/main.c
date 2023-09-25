@@ -138,17 +138,17 @@ void preencherTabela(struct tabela *tabela) {
     linhaAux->proximo = tabela->transicao[1];
     tabela->transicao[1] = linhaAux;
 
-    linhaAux = criarLinha(4, '}', '\0', '}');
+    linhaAux = criarLinha(7, '}', '\0', '}');
 
     linhaAux->proximo = tabela->transicao[1];
     tabela->transicao[1] = linhaAux;
 
-    linhaAux = criarLinha(4, ']', '\0', ']');
+    linhaAux = criarLinha(7, ']', '\0', ']');
 
     linhaAux->proximo = tabela->transicao[1];
     tabela->transicao[1] = linhaAux;
 
-    linhaAux = criarLinha(4, ')', '\0', ')');
+    linhaAux = criarLinha(7, ')', '\0', ')');
 
     linhaAux->proximo = tabela->transicao[1];
     tabela->transicao[1] = linhaAux;
@@ -178,17 +178,12 @@ void preencherTabela(struct tabela *tabela) {
     // Estado 3 vai para
 
     for (int j = 0; j < 10; j++) {
-        struct linhas *linhaAux = criarLinha(1, j + '0', '\0', '\0');
+        struct linhas *linhaAux = criarLinha(4, j + '0', '\0', '\0');
 
         linhaAux->proximo = tabela->transicao[3];
         tabela->transicao[3] = linhaAux;
 
     }
-
-    linhaAux = criarLinha(2, '-', '\0', '\0');
-
-    linhaAux->proximo = tabela->transicao[3];
-    tabela->transicao[3] = linhaAux;
 
     linhaAux = criarLinha(3,'(',')', '\0');
     linhaAux->proximo = tabela->transicao[3];
@@ -204,41 +199,152 @@ void preencherTabela(struct tabela *tabela) {
 
     // Estado 4 vai para
 
-    linhaAux = criarLinha(2, '-', '\0', '\0');
+    for (int j = 0; j < 10; j++) {
+        struct linhas *linhaAux = criarLinha(4, j + '0', '\0', '\0');
+
+        linhaAux->proximo = tabela->transicao[4];
+        tabela->transicao[4] = linhaAux;
+
+    }
+
+    linhaAux = criarLinha(5, '-', '\0', '\0');
 
     linhaAux->proximo = tabela->transicao[4];
     tabela->transicao[4] = linhaAux;
+
+    linhaAux = criarLinha(5, '+', '\0', '\0');
+
+    linhaAux->proximo = tabela->transicao[4];
+    tabela->transicao[4] = linhaAux;
+
+    linhaAux = criarLinha(5, '*', '\0', '\0');
+
+    linhaAux->proximo = tabela->transicao[4];
+    tabela->transicao[4] = linhaAux;
+
+    linhaAux = criarLinha(5, '/', '\0', '\0');
+
+    linhaAux->proximo = tabela->transicao[4];
+    tabela->transicao[4] = linhaAux;
+    
+    linhaAux = criarLinha(7, '}', '\0', '}');
+
+    linhaAux->proximo = tabela->transicao[4];
+    tabela->transicao[4] = linhaAux;
+
+    linhaAux = criarLinha(7, ']', '\0', ']');
+
+    linhaAux->proximo = tabela->transicao[4];
+    tabela->transicao[4] = linhaAux;
+
+    linhaAux = criarLinha(7, ')', '\0', ')');
+
+    linhaAux->proximo = tabela->transicao[4];
+    tabela->transicao[4] = linhaAux;
+
+    // Estado 5 vai para
+
+    for (int j = 0; j < 10; j++) {
+        struct linhas *linhaAux = criarLinha(6, j + '0', '\0', '\0');
+
+        linhaAux->proximo = tabela->transicao[5];
+        tabela->transicao[5] = linhaAux;
+
+    }
+
+    linhaAux = criarLinha(3,'(',')', '\0');
+    linhaAux->proximo = tabela->transicao[5];
+    tabela->transicao[5] = linhaAux;
+
+    linhaAux = criarLinha(3, '[',']', '\0');
+    linhaAux->proximo = tabela->transicao[5];
+    tabela->transicao[5] = linhaAux;
+
+    linhaAux = criarLinha(3, '{', '}', '\0');
+    linhaAux->proximo = tabela->transicao[5];
+    tabela->transicao[5] = linhaAux;
+
+    // Estado 6 vai para
+
+    for (int j = 0; j < 10; j++) {
+        struct linhas *linhaAux = criarLinha(6, j + '0', '\0', '\0');
+
+        linhaAux->proximo = tabela->transicao[6];
+        tabela->transicao[6] = linhaAux;
+
+    }
+
+    linhaAux = criarLinha(7, '}', '\0', '}');
+
+    linhaAux->proximo = tabela->transicao[6];
+    tabela->transicao[6] = linhaAux;
+
+    linhaAux = criarLinha(7, ']', '\0', ']');
+
+    linhaAux->proximo = tabela->transicao[6];
+    tabela->transicao[6] = linhaAux;
+
+    linhaAux = criarLinha(7, ')', '\0', ')');
+
+    linhaAux->proximo = tabela->transicao[6];
+    tabela->transicao[6] = linhaAux;
+
+    linhaAux = criarLinha(2, '-', '\0', '\0');
+
+    linhaAux->proximo = tabela->transicao[6];
+    tabela->transicao[6] = linhaAux;
 
     linhaAux = criarLinha(2, '+', '\0', '\0');
 
-    linhaAux->proximo = tabela->transicao[4];
-    tabela->transicao[4] = linhaAux;
+    linhaAux->proximo = tabela->transicao[6];
+    tabela->transicao[6] = linhaAux;
 
     linhaAux = criarLinha(2, '*', '\0', '\0');
 
-    linhaAux->proximo = tabela->transicao[4];
-    tabela->transicao[4] = linhaAux;
+    linhaAux->proximo = tabela->transicao[6];
+    tabela->transicao[6] = linhaAux;
 
     linhaAux = criarLinha(2, '/', '\0', '\0');
 
-    linhaAux->proximo = tabela->transicao[4];
-    tabela->transicao[4] = linhaAux;
+    linhaAux->proximo = tabela->transicao[6];
+    tabela->transicao[6] = linhaAux;
 
-    
-    linhaAux = criarLinha(4, '}', '\0', '}');
+    // Estado 7 vai para
 
-    linhaAux->proximo = tabela->transicao[4];
-    tabela->transicao[4] = linhaAux;
+    linhaAux = criarLinha(7, '}', '\0', '}');
 
-    linhaAux = criarLinha(4, ']', '\0', ']');
+    linhaAux->proximo = tabela->transicao[7];
+    tabela->transicao[7] = linhaAux;
 
-    linhaAux->proximo = tabela->transicao[4];
-    tabela->transicao[4] = linhaAux;
+    linhaAux = criarLinha(7, ']', '\0', ']');
 
-    linhaAux = criarLinha(4, ')', '\0', ')');
+    linhaAux->proximo = tabela->transicao[7];
+    tabela->transicao[7] = linhaAux;
 
-    linhaAux->proximo = tabela->transicao[4];
-    tabela->transicao[4] = linhaAux;
+    linhaAux = criarLinha(7, ')', '\0', ')');
+
+    linhaAux->proximo = tabela->transicao[7];
+    tabela->transicao[7] = linhaAux;
+
+     linhaAux = criarLinha(2, '-', '\0', '\0');
+
+    linhaAux->proximo = tabela->transicao[7];
+    tabela->transicao[7] = linhaAux;
+
+    linhaAux = criarLinha(2, '+', '\0', '\0');
+
+    linhaAux->proximo = tabela->transicao[7];
+    tabela->transicao[7] = linhaAux;
+
+    linhaAux = criarLinha(2, '*', '\0', '\0');
+
+    linhaAux->proximo = tabela->transicao[7];
+    tabela->transicao[7] = linhaAux;
+
+    linhaAux = criarLinha(2, '/', '\0', '\0');
+
+    linhaAux->proximo = tabela->transicao[7];
+    tabela->transicao[7] = linhaAux;
     
 }
 
@@ -306,8 +412,8 @@ int match(char *string, struct tabela *t) {
     }
 
     else {
-        if (estadoAtual == 4) {
-            estadoAtual = 4 + 1;
+        if (estadoAtual == 7) {
+            estadoAtual = 7 + 1;
         }
     }
 
@@ -316,10 +422,10 @@ int match(char *string, struct tabela *t) {
 
 int main(int argc, char** argv) {
     struct tabela tabela;
-    tabela.n = 5;
+    tabela.n = 8;
     tabela.inicio = 0;
     tabela.final[0] = 1;
-    tabela.final[1] = 5;
+    tabela.final[1] = 8;
     preencherTabela(&tabela);
 
     int estado = match(argv[1], &tabela);
