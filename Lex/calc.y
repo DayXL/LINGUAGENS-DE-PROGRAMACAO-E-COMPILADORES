@@ -19,7 +19,13 @@ exp:
     exp add exp { $$ = $1 + $3; }
     | exp sub exp { $$ = $1 - $3; }
     | exp mul exp { $$ = $1 * $3; }
-    | exp divi exp { $$ = $1 / $3; }
+    | exp divi exp { if ($3 != 0) {
+                        $$ = $1 / $3;
+                    }
+                    else {
+                        yyerror("Divisão por zero inválido");
+                    }
+                }
     | sub exp { $$ = -$2; }
     | num
     ;
