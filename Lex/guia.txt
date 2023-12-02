@@ -1,0 +1,25 @@
+Para rodar você precisa ter o flex e o bison instalados.
+
+sudo apt install flex
+sudo apt install bison
+
+Após instalar o que precisa, use os seguintes comandos:
+
+bison -d calc.y
+flex main.lex
+gcc calc.tab.c lex.yy.c -lfl
+
+Para testar use:
+
+./a.out
+
+No momento só reconhece adição e subtração, para receber o resultado sua expressão aritmética
+deve terminar com "=".
+
+Exemplo:
+
+12+5-3=
+
+ou 
+
+20 + 2 =
