@@ -1,13 +1,13 @@
 %{
- #include <stdio.h>
- #include <stdlib.h>
- void yyerror(char *);
- int yylex(void);
- int vet[20];
+    #include <stdio.h>
+    #include <stdlib.h>
+    void yyerror(char *);
+    int yylex(void);
 %}
 
-%token num add sub igual
-%left add sub
+%token num add sub mul divi igual
+%left add sub 
+%left divi mul
 
 %%
 
@@ -18,6 +18,8 @@ inicio: exp igual
 exp: 
     exp add exp { $$ = $1 + $3; }
     | exp sub exp { $$ = $1 - $3; }
+    | exp mul exp { $$ = $1 * $3; }
+    | exp divi exp { $$ = $1 / $3; }
     | sub exp { $$ = -$2; }
     | num
     ;

@@ -10,6 +10,10 @@
 
 - {return sub;}
 
+\* {return mul;}
+
+\/ {return divi;}
+
 ([0-9])+ {yylval = atoi(yytext); return num;}
 
 [\n] ;

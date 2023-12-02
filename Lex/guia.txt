@@ -13,8 +13,7 @@ Para testar use:
 
 ./a.out
 
-No momento só reconhece adição e subtração, para receber o resultado sua expressão aritmética
-deve terminar com "=".
+Para receber o resultado sua expressão aritmética deve terminar com "=".
 
 Exemplo:
 
@@ -22,4 +21,10 @@ Exemplo:
 
 ou 
 
-20 + 2 =
+20 / 2 =
+
+ou 
+
+4+5+2*3
+
+Os números só são inteiros.
